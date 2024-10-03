@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import Login from "./pages/Login"
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Dashboard from "./pages/Dashboard";
+import OverallLeaderBoard from "./pages/OverallLeaderBoard";
+import { UserContext, UserProvider } from "./utils/UserContext";
+import { useState } from "react";
 
 function App() {
+  // console.log("Passcode :" + process.env.REACT_APP_PASSCODE);
+  // console.log("Base URL :" + process.env.REACT_APP_BASE_URL);
+
+  const [passcode, setPasscode] = useState(process.env.REACT_APP_PASSCODE);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserProvider>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Login passcode={passcode} />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/leader" element={<OverallLeaderBoard />} />
+        
+      </Routes>
+    </Router>
+    </UserProvider>
   );
 }
 
