@@ -8,7 +8,6 @@ const { MongoClient } = require('mongodb');
 
 dotenv.config();
  
-// 5w1iLbhozAvdBM4A
 
 const PORT = process.env.PORT || 5000;   
   
